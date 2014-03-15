@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#btn').click(function(){
+          animate($('.arrow > div:first-child'), -45, 45, 22);
+          animate($('.arrow > div:last-child'), 45, -45, 19);
+        });
+
+        function animate(e, startDeg, endDeg, left){
+          e.animate({'left': left}, 400);
+
+          $({deg: startDeg}).animate({deg: endDeg}, {
+              duration: 600,
+              step: function(now){
+                e.css({transform: 'rotate(' + now + 'deg)'})
+              }
+            }
+          )
+        }
+
+      })
+    </script>
+
+    <style>
+
+      .arrow > div {
+        border-bottom: 2px solid black;
+        width: 30px;
+        padding-top: 5px;
+        position: relative;
+      }
+
+      .arrow > div:first-child {
+        width: 11px;
+        -webkit-transform: rotate(-45deg);
+        top: 4px;
+        left: -4px;
+      }
+
+      .arrow > div:last-child {
+        width: 11px;
+        -webkit-transform: rotate(45deg);
+        top: -3px;
+        left: -1px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="arrow">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <br><br>
+
+    <button id="btn">Click Me!</button>
+
+  </body>
+</html>

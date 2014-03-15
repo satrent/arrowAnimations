@@ -1,7 +1,7 @@
 <html>
   <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <style>
-
       .arrow > div {
         width: 30px;
         border-bottom: 2px solid black;
@@ -26,10 +26,7 @@
       button {
         height: 40px;
       }
-
     </style>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
   </head>
   <body>
     <div class="arrow">
@@ -38,7 +35,7 @@
       <div></div>
     </div>
 
-    <br><br><br><br>
+    <br><br>
 
     <button id="btn">Click Me!</button>
   </body>
@@ -56,10 +53,8 @@
           animateRotate(45, -45, $('.arrow > div:first-child'), -4);
           animateRotate(-45, 45, $('.arrow > div:last-child'), -1);
           left = true;
-
         }
       });
-
 
       function animateRotate(start, end, elem, left){
         $({deg: start}).animate({deg: end}, {
@@ -68,7 +63,8 @@
             elem.css({
               transform: "rotate(" + now + "deg)"
             });
-          }
+          },
+          complete: function(){console.log('done');}
         });
 
         elem.animate({left: left}, 700);
