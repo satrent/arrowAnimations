@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <style>
+
+      .arrow > div {
+        width: 30px;
+        border-bottom: 2px solid black;
+        padding-top: 5px;
+        position: relative;
+      }
+
+      .arrow > div:first-child {
+        -webkit-transform: rotate(-45deg);
+        width: 11px;
+        top: 4px;
+        left: -4px;
+      }
+
+      .arrow > div:last-child {
+        -webkit-transform: rotate(45deg);
+        width: 11px;
+        top: -3px;
+        left: -1px;
+      }
+
+      button {
+        height: 40px;
+      }
+
+    </style>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="arrow">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <br><br><br><br>
+
+    <button id="btn">Click Me!</button>
+  </body>
+
+  <script>
+    $(document).ready(function(){
+      var left = true;
+
+      $("#btn").click(function(){
+        if (left) {
+          animateRotate(-45, 45, $('.arrow > div:first-child'), 22);
+          animateRotate(45, -45, $('.arrow > div:last-child'), 19);
+          left = false;
+        } else {
+          animateRotate(45, -45, $('.arrow > div:first-child'), -4);
+          animateRotate(-45, 45, $('.arrow > div:last-child'), -1);
+          left = true;
+
+        }
+      });
+
+
+      function animateRotate(start, end, elem, left){
+        $({deg: start}).animate({deg: end}, {
+          duration: 600,
+          step: function(now){
+            elem.css({
+              transform: "rotate(" + now + "deg)"
+            });
+          }
+        });
+
+        elem.animate({left: left}, 700);
+      }
+    })
+
+  </script>
+</html>
+
+
+
+
+
