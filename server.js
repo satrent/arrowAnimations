@@ -7,6 +7,9 @@ app.use('/', express.static(__dirname));
 app.use("/css", express.static(__dirname + '/css'));
 app.use('/jQuery', express.static(__dirname + '/jQuery'));
 
+app.get('/hello', function(req, res){
+  res.send('hello, world');
+})
 
 http.createServer(app).listen(9008, function() {
   console.log('web server listening on port 9008');
