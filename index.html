@@ -3,16 +3,27 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script>
       $(document).ready(function(){
+
+        var left = true;
+
         $('#btn').click(function(){
-          animate($('.arrow > div:first-child'), -45, 45, 22);
-          animate($('.arrow > div:last-child'), 45, -45, 19);
+          if (left) {
+            animate($('.top'), -45, 45, 19);
+            animate($('.bottom'), 45, -45, 19);
+            left = false;
+          } else {
+            animate($('.top'), 45, -45, -5);
+            animate($('.bottom'), -45, 45, -5);
+            left = true;
+          }
+
         });
 
         function animate(e, startDeg, endDeg, left){
-          e.animate({'left': left}, 400);
+          e.animate({'left': left}, 800);
 
           $({deg: startDeg}).animate({deg: endDeg}, {
-              duration: 600,
+              duration: 800,
               step: function(now){
                 e.css({transform: 'rotate(' + now + 'deg)'})
               }
@@ -25,34 +36,43 @@
 
     <style>
 
-      .arrow > div {
-        border-bottom: 2px solid black;
-        width: 30px;
-        padding-top: 5px;
+      .arrow {
+        border: 2px solid black;
         position: relative;
+        padding-top: 5px;
+        heigth: 10px;
+        background-color: #000;
       }
 
-      .arrow > div:first-child {
-        width: 11px;
+      .middle {
+        width: 30px;
+      }
+
+      .top {
+        width: 17px;
         -webkit-transform: rotate(-45deg);
-        top: 4px;
-        left: -4px;
+        top: 5px;
+        left: -5px;
       }
 
-      .arrow > div:last-child {
-        width: 11px;
+      .bottom {
+        width: 17px;
         -webkit-transform: rotate(45deg);
-        top: -3px;
-        left: -1px;
+        top: -4px;
+        left: -5px;
+      }
+
+      button {
+        height: 20px;
       }
     </style>
   </head>
   <body>
 
-    <div class="arrow">
-      <div></div>
-      <div></div>
-      <div></div>
+    <div>
+      <div class='arrow top'></div>
+      <div class='arrow middle'></div>
+      <div class='arrow bottom'></div>
     </div>
 
     <br><br>
